@@ -1,0 +1,40 @@
+---
+title: "Assignment9Part1"
+output:
+  html_document:
+    df_print: paged
+Author: Ruiqin Gao
+---
+#Q1
+```{r}
+library(tidyverse)
+library(here)
+sexabuse<-read.csv(here("Data", "Abuse.csv"))
+sexabuse
+str(sexabuse)
+ggplot(data = sexabuse,aes(x=csa, y=ptsd))+
+  labs(x=" Childhood sexual abuse status(CSA)",
+       y="Post-traumatic stress disorder score(PTSD) ")+
+  geom_boxplot(color="red")+
+  ggtitle("PTSD score by CSA")
+```
+#Q2
+```{r}
+ggplot(data = sexabuse,aes(x=csa, y=cpa))+
+  labs(x=" Childhood sexual abuse status (CSA)",
+       y="Childhood physical abuse score (CPA) ")+
+  geom_boxplot(color= "blue")+
+  ggtitle("CPA score by CSA")
+```
+
+#Q3
+```{r}
+ggplot(sexabuse, aes(x=cpa, y=ptsd, color=csa)) +
+  geom_point(aes(shape=factor(csa)))+
+  geom_smooth()+
+  labs( x="Childhood physical abuse score (CPA)",
+        y="Post-traumatic stress disorder score(PTSD)",
+        color="Childhood sexual abuse status")+
+ggtitle("Relationship between CPA and PTSD by CSA") 
+```
+
